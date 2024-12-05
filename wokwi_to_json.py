@@ -17,18 +17,11 @@ def json_to_netlist(json_file, netlist_file):
     components = data.get('parts', [])
     connections = data.get('connections', [])
 
-    component_map = {
-        "wokwi-arduino-nano": "ArduinoNano",
-        "wokwi-stepper-motor": "StepperMotor",
-        "wokwi-ds1307": "DS1307RTC",
-        "wokwi-hc-sr04": "HCSR04Ultrasonic"
-    }
-
     netlist = []
 
     # Add components to netlist
     for component in components:
-        comp_type = component_map.get(component['type'], component['type'])
+        comp_type = component['type']
         comp_id = component['id']
         netlist.append(f"{comp_id}  {comp_type}")
 
